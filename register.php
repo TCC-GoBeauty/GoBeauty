@@ -28,7 +28,7 @@
 
                     <div class="input">
                         <img src="./assets/img/icons/user.svg" alt="icon login">
-                        <input name="name" type="text" placeholder="Nome" required/>
+                        <input name="name" id="ma,e" type="text" placeholder="Nome" required/>
                     </div>
 
                     <div class="input">

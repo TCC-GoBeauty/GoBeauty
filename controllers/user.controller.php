@@ -150,11 +150,11 @@
                     for($i =0; $i<count($arr);$i++) {
 
                         if($arr[$i]['role_id'] == 2) {
-                            $role = "administrador";
-                        } else if($arr[$i]['role_id' == 3]) {
-                            $role = "Funcionário";
-                        } else {
+                            $role = "Administrador";
+                        } else if($arr[$i]['role_id'] == 3) {
                             $role = "Cliente";
+                        } else {
+                            $role = 'Funcionário';
                         }
         
                         echo "<tr>
@@ -162,8 +162,32 @@
                                 <td>".$arr[$i]['email']."</td>
                                 <td>".$arr[$i]['tel']."</td>
                                 <td>".$role."</td>
-                                <td><a href='#'><img class='excluir' src='./assets/img/icons/delete.svg' alt='power icon'>&nbsp;Deletar</a></td>
-                            </tr>";
+                                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a href='#' role='button' class='btn btn-sm'><i class='fas fa-trash-alt'></i>&nbsp;&nbsp;Deletar</a></td>
+                        </tr>";
+                    }
+                }
+
+                public function listWithParam($param) {
+                    $arr = $this->_user->getUser($param);
+                    for($i =0; $i<count($arr);$i++) {
+
+                        if($arr[$i]['role_id'] == 2) {
+                            $role = "administrador";
+                        } else if($arr[$i]['role_id'] == 3) {
+                            $role = "Cliente";
+                        } else {
+                            $role = "Funcionário";
+                        }
+        
+                        echo "<tr>
+                                <td>".$arr[$i]['username']."</td>
+                                <td>".$arr[$i]['email']."</td>
+                                <td>".$arr[$i]['tel']."</td>
+                                <td>".$role."</td>
+                                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a href='#' role='button' class='btn btn-sm'><i class='fas fa-trash-alt'></i>&nbsp;&nbsp;Deletar</a></td>
+                        </tr>";
                     }
                 }
             }

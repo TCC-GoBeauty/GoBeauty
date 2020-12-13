@@ -68,6 +68,20 @@ require_once 'Conn.class.php';
         public function getUserInfos() {
             return $this->_userInfos;
         }
+        
+        public function getUser($param) {
+            $conn = new Connect();
+
+            try{
+                $sql = "SELECT * FROM users WHERE role_id between 2 and 4 AND username like '%".$param."%' OR email like '%".$param."%' OR tel like '%".$param."%'";
+                $stmt = $conn->get_conn()->prepare($sql);
+                $stmt->execute();
+                $result = $stmt -> fetchAll();
+                return $result;
+            } catch(PDOException $ex) {
+                return $ex->getMessage();
+            }
+        }
 
         public function getAllUsers() {
             $conn = new Connect();
