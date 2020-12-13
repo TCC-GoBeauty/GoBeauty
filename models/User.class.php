@@ -69,12 +69,12 @@
         public function getUserInfos() {
             return $this->_userInfos;
         }
-        
+
         public function getUser($param) {
             $conn = new Connect();
 
             try{
-                $sql = "SELECT * FROM users WHERE role_id between 2 and 4 AND username like '%".$param."%' OR email like '%".$param."%' OR tel like '%".$param."%'";
+                $sql = "SELECT * FROM users WHERE role_id between 2 and 4 AND username like '%".$param."%' OR email like '%".$param."%' OR tel like '%".$param."%' OR id = '$param'";
                 $stmt = $conn->get_conn()->prepare($sql);
                 $stmt->execute();
                 $result = $stmt -> fetchAll();
@@ -131,18 +131,16 @@
 
         //Função que atualiza os dados do usuário dentro da plataforma
         public function updateUser($id,$user,$email,$pass,$tel) {
-            $this -> setEmail($email);
-            $this -> setUsername($user);
-            $this -> setPass($pass);
-            $this -> setTel($tel);
+
             $conn = new Connect();
             try{
-                $sql = "UPDATE users  SET username = :user, password = :pass,email = :email  WHERE id = :id";
+                $sql = "UPDATE users  SET username = :user, password = :pass,email = :email,tel = :tel  WHERE id = :id";
                 $stmt = $conn->get_conn()->prepare($sql);
-                $stmt->bindValue(':user',"".$this->getUsername()."");
-                $stmt->bindValue(':pass',"".$this->getPass()."");   
-                $stmt->bindValue(':email',"".$this->getEmail()."");
-                $stmt->bindValue(':id',"".$id."");  
+                $stmt->bindValue(':user',$user);
+                $stmt->bindValue(':pass',$pass);   
+                $stmt->bindValue(':email',$email);
+                $stmt->bindValue(':tel',$tel);
+                $stmt->bindValue(':id',$id);  
                 $stmt->execute();
             } catch(PDOException $ex) {
                 return $ex->getMessage();

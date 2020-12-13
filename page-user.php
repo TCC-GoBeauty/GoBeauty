@@ -19,6 +19,11 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/css/nav-custom.css">
+    <link rel="stylesheet" href="./assets/css/content.css">
+    <link rel="stylesheet" href="./assets/css/profile.css">
+    <link rel="stylesheet" href="./assets/css/change-password.css">
+    <link rel="stylesheet" href="./assets/css/gallery.css">
+    <script src="https://kit.fontawesome.com/86d4fe3a19.js"></script>
     <title>Usuário - GoBeauty</title>
   </head>
 
@@ -32,13 +37,13 @@
     <div class="collapse navbar-collapse" id="textoNavbar">
         <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-            <a class="nav-link" href="#">Inicio<span class="sr-only">(Página atual)</span></a>
+            <a class="nav-link" href="?module=today-user">Inicio<span class="sr-only">(Página atual)</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Galeria</a>
+            <a class="nav-link" href="?module=gallery">Galeria</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Agendar</a>
+            <a class="nav-link" href="?module=schedule">Agendar</a>
         </li>
         </ul>
         <span class="nav-item dropdown" id="user-options">
@@ -46,14 +51,17 @@
             <?php salute(); echo $_SESSION['username'];?>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="#">Editar minha conta</a>
-                <a class="dropdown-item" href="#">Logout do sistema</a>
+                <a class="dropdown-item" href="?module=edit-account&u=<?php echo 19?>">Editar minha conta</a>
+                <a class="dropdown-item" href="./../gobeauty/controllers/functions/logout.php">Logout do sistema</a>
             </div>
         </span>
     </div>
     </nav>
     <div class="container">
-        
+        <?php
+            if(isset($_GET['module']))
+               require_once './../gobeauty/modules/'.$_GET['module'].'.php';
+        ?>
     </div>
     <!-- JavaScript (Opcional) -->
     <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->

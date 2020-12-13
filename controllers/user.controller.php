@@ -37,11 +37,8 @@
                                 }
                                 $_SESSION['id'] = $infos['id'];
                                 $_SESSION['username'] = $infos['username'];
-                                $_SESSION['pass'] = $infos['pass'];
-                                $_SESSION['email'] = $infos['email'];
-                                $_SESSION['tel'] = $infos['tel'];
                                 $_SESSION['role'] = $infos['role'];
-                                $_SESSION['logged'] = true;
+                                
                                 //verifica role do usuário e redireciona para a página home do mesmo
                                 if($_SESSION['role'] == 4){
                                     header('Location:./../gobeauty/page-employee.php');                     
@@ -66,6 +63,15 @@
                                 session_destroy();
                             exit;
                         }
+                    } catch(Exception $ex) {
+                        //captura erro genérico
+                        return $ex;
+                    }
+                }
+
+                public function getAccountInfos($id) {
+                    try {
+                        return $this->_user->getUser($id);
                     } catch(Exception $ex) {
                         //captura erro genérico
                         return $ex;
@@ -140,14 +146,14 @@
 
 
                 public function UpdateUser($id) {
-                    if(md5($_POST['oldPassword'])==$_SESSION['password'] && md5($_POST['newPassword'])==md5($_POST['confirmPassword'])) {
-                        if(strlen($_POST['name'])>=3 && strlen($_POST['password'])>=4) {
+                    if(isset($_POST['password'])) {
+                        if(strlen($_POST['password'])>=4) {
                             $this->_user -> setUsername($_POST['name']);
                             $this->_user -> setTel($_POST['tel']);
                             $this->_user -> setEmail($_POST['email']);
-                            $this->_user -> setPass($_POST['newPassword']);
+                            $this->_user -> setPass($_POST['password']);
                             try{
-                                $this->_user -> updateUser($id,$this->_user->getUsername(), $this->_user->getEmail(), $this->_user->getTel(), $this->_user->getPass());
+                                $this->_user -> updateUser($id,$this->_user->getUsername(), $this->_user->getEmail(), $this->_user->getPass(), $this->_user->getTel());
                                 alertMessage('Usuário atualizado com sucesso!');
                             } catch(PDOException $ex) {
                                 //captura erro do banco
@@ -157,8 +163,11 @@
                         alertMessage('Verifique se os dados digitados são válidos!');
                         unset($this->_user);
                     }
+                    } else {
+                        alertMessage('Credenciais incorretas!');
+                        unset($this->_user);
+                    }
                 }
-            }
 
                 public function DeleteUser($id) {
                     $this->_user->deleteUser($id);
@@ -212,4 +221,5 @@
                         </tr>";
                     }
                 }
+                
             }

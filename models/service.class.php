@@ -10,11 +10,13 @@
         private $_name;
         private $_price;
         private $_max_time;
+        private $_service_infos;
 
         public function __construct() {
             $this->_name = "";
             $this->_price = 0.00;
             $this->_max_time = "00:00";
+            $this->_service_infos = [];
        }
 
        public function setName($name) {
@@ -41,6 +43,39 @@
            return $this->_max_time;
        }
 
+       public function getServiceInfos($id) {
+            $conn = new Connect();
+            try{
+                $sql = "SELECT * FROM service WHERE id = :id";
+                $stmt = $conn->get_conn()->prepare($sql);
+                $stmt->bindValue(':id',$id);
+                $stmt->execute();
+                $result = $stmt->fetchAll();
+                $this->_service_infos = array(
+                    'id' => $result[0]['id'],
+                    'name' => $result[0]['name'],
+                    'price' => $result[0]['price'],
+                    'max_time' => $result[0]['max_time']
+                );
+                return $this->_service_infos;
+            } catch (PDOException $ex) {
+                return $ex -> getMessage();
+            }
+       }
+
+       public function getAllServices() {
+            $conn = new Connect();
+            try{
+                $sql = "SELECT * FROM service";
+                $stmt = $conn->get_conn()->prepare($sql);
+                $stmt->execute();
+                $result = $stmt->fetchAll();
+                return $result;
+            } catch (PDOException $ex) {
+                return $ex -> getMessage();
+            }
+       }
+
        public function createService($name,$price,$time) {
            $conn = new Connect();
            try{
@@ -54,6 +89,34 @@
                 return $ex->getMessage();
             }
        }
+
+       public function updateService($id,$name,$price,$time) {
+           $conn = new Connect();
+           try{
+               $sql = "UPDATE service SET name = :name, price = :price, max_time = :time WHERE id = :id";
+               $stmt = $conn->get_conn()->prepare($sql);
+               $stmt-> bindValue(':name',$name);
+               $stmt-> bindValue(':price',$price);
+               $stmt-> bindValue(':time',$time);
+               $stmt-> bindValue(':id',$id);
+               $stmt-> execute();
+           } catch (PDOException $ex) {
+                return $ex->getMessage();
+            }
+       }
+
+       public function deleteService($id) {
+           $conn = new Connect();
+           try{
+               $sql = "DELETE FROM service WHERE id = :id";
+               $stmt = $conn->get_conn()->prepare($sql);
+               $stmt->bindValue(':id',$id);
+               $stmt->execute();
+            } catch (PDOException $ex) {
+                return $ex->getMessage();
+            }
+       }
+
 
        public function exists($name) {
         try {

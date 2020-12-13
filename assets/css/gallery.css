@@ -1,14 +1,12 @@
 .gal_container h1 {
     text-align: center;
     margin: 2em 0;
-    font-size: 2em;
     color:#8257e6 ;
-    font-family: 'Roboto', sans-serif;
 }
 
 .gal_container {
     width: 80vw;
-    margin: auto
+    margin: auto;
 }
 
 .gal_hello {

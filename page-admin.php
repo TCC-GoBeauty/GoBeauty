@@ -63,8 +63,8 @@ use app_controllers\UserController;
             <?php salute(); echo $_SESSION['username'];?>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="#">Editar minha conta</a>
-                <a class="dropdown-item" href="#">Logout do sistema</a>
+                <a class="dropdown-item" href="?module=edit-account&u=<?php echo 19?>">Editar minha conta</a>
+                <a class="dropdown-item" href="./../gobeauty/controllers/functions/logout.php">Logout do sistema</a>
             </div>
         </span>
     </div>
