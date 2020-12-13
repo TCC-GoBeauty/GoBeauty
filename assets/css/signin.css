@@ -1,0 +1,81 @@
+.container-login {
+    height: 100vh;
+    display: flex;
+    align-items: stretch;
+    background: var(--default-color);
+}
+
+.content-login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 700px;
+    padding-top: 32px;
+}
+
+@keyframes appearFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.animation-login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    animation: appearFromLeft 1s;
+}
+
+.animation-login form {
+    margin: 32px 0;
+    width: 340px;
+    text-align: center;
+}
+
+.animation-login h1 {
+    margin-bottom: 24px;
+}
+
+.animation-login form a {
+    color: var(--secondary-color);
+    display: block;
+    margin-top: 24px;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.animation-login form a:hover {
+    color: var(--secondary-color);
+}
+
+.animation-login a {
+    color: var(--secondary-color);
+    display: block;
+    margin-top: 24px;
+    text-decoration: none;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+}
+
+.animation-login a img {
+    margin-right: 16px;
+}
+
+.animation-login a:hover {
+    color: var(--secondary-color);
+}
+
+.background-signin {
+    flex: 1;
+    background: url('../img/sign-in-background.jpg') no-repeat center;
+    background-size: cover;
+}

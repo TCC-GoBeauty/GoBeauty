@@ -1,0 +1,110 @@
+.content-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: -176px auto 0;
+    width: 100%;
+    max-width: 700px;
+}
+
+.content-profile form {
+    margin: 200px 0 24px;
+    width: 340px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.content-profile form h1 {
+    margin-bottom: 24px;
+    font-size: 20px;
+    text-align: left;
+    color: var(--default-color);
+}
+
+.content-profile form a {
+    color: var(--secondary-color);
+    display: block;
+    margin-top: 24px;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.avatar {
+    margin-bottom: 32px;
+    position: relative;
+    align-self: center;
+}
+
+.avatar img {
+    width: 186px;
+    height: 186px;
+    border-radius: 50%;
+}
+
+.avatar label {
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    right: 0;
+    bottom: 0;
+    border: 0;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar input {
+    display: none;
+}
+
+.avatar svg {
+    width: 20px;
+    height: 20px;
+    color: var(--secondary-color);
+}
+
+.input-profile {
+    background: var(--default-color);
+    border-radius: 10px;
+    border: 2px solid var(--default-color);
+    padding: 16px;
+    width: 100%;
+    color: var(--secondary-color);
+    display: flex;
+    align-items: center;
+    margin-top: 8px
+}
+
+.input-profile input,
+.input-profile select {
+    flex: 1;
+    background: transparent;
+    border: 0;
+    color: var(--secondary-color);
+}
+
+.input-profile input:focus ,
+.input-profile select:focus {
+    color: var(--secondary-color);
+}
+
+.input-profile input::placeholder,
+.input-profile select::placeholder {
+    color: #f7f5fa80
+}
+
+.input-profile input:-webkit-autofill, .input-profile input:-webkit-autofill:hover, .input-profile input:-webkit-autofill:focus, .input-profile input:-webkit-autofill:active,
+.input-profile select:-webkit-autofill, .input-profile select:-webkit-autofill:hover, .input-profile select:-webkit-autofill:focus, .input-profile select:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px var(--default-color) inset !important;
+    -webkit-text-fill-color: var(--secondary-color) !important;
+}
+
+.input-profile img {
+    margin-right: 16px;
+}

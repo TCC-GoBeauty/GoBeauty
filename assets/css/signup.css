@@ -1,0 +1,54 @@
+@keyframes appearFromRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.animation-signup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    animation: appearFromRight 1s;
+    margin-top: -5%;
+}
+
+.animation-signup form {
+    margin: 32px 0;
+    width: 340px;
+    text-align: center;
+}
+
+.animation-signup h1 {
+    margin-bottom: 24px;
+}
+
+.animation-signup a {
+    color: var(--secondary-color);
+    display: block;
+    margin-top: 24px;
+    text-decoration: none;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    margin-top: -5%;
+}
+
+.animation-signup a img {
+    margin-right: 16px;
+}
+
+.background-signup {
+    flex: 1;
+    background: url('../img/sign-up-background.jpg') no-repeat center;
+    background-size: cover;
+}
+
+#back-to-login {
+    
+}

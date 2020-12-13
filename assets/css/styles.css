@@ -1,0 +1,82 @@
+:root {
+    --default-color: #8257e6;
+    --primary-color: #ff9900;
+    --secondary-color: #F7F5FA;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background: var(--secondary-color);
+    color: var(--secondary-color);
+    -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6, strong {
+    font-weight: 500;
+}
+
+button {
+    cursor: pointer;
+}
+
+.input {
+    background: var(--secondary-color);
+    border-radius: 10px;
+    border: 2px solid var(--secondary-color);
+    padding: 16px;
+    width: 100%;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    margin-top: 8px
+}
+
+input, select {
+    flex: 1;
+    background: transparent;
+    border: 0;
+    color: var(--primary-color);
+}
+
+input:focus, select:focus {
+    color: var(--primary-color);
+}
+
+input::placeholder,
+select::placeholder {
+    color: var(--primary-color);
+}
+
+input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill:active,
+select:-webkit-autofill, select:-webkit-autofill:hover, select:-webkit-autofill:focus, select:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px var(--secondary-color) inset;
+    -webkit-text-fill-color: var(--primary-color);
+}
+
+.input img {
+    margin-right: 16px;
+}
+
+.button {
+    background: var(--primary-color);
+    height: 56px;
+    border-radius: 10px;
+    border: 0;
+    padding: 0 16px;
+    color: var(--secondary-color);
+    width: 100%;
+    font-weight: 500;
+    margin-top: 14px;
+    transition: background-color 0.2s;
+}
+
+.button:hover {
+    opacity: 0.2;
+}
