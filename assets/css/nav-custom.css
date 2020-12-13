@@ -23,3 +23,7 @@
 #user-options #navbarDropdownMenuLink:hover {
     color:  #ff9900;
 }
+
+.navbar #service .dropdown-menu a {
+    color:  #ff9900;
+}

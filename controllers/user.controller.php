@@ -78,7 +78,7 @@
                     if(!isset($_SESSION)) {
                         session_start();
                     }
-                    if($role_user == 2) {
+                    if($role_user == 4) {
                         $this->_user = new Employee();
                     } else{
                         $this->_user = new Customer();
@@ -92,32 +92,54 @@
                             if(!$this->_user->exists($this->_user->getEmail(),$this->_user->getPass())){
                                 $this->_user -> createUser($this->_user->getUsername(), $this->_user->getEmail(), $this->_user->getTel(), $this->_user->getPass(),$this->_user->getRole());
                                 alertMessage('Usuário inserido com sucesso');
-                                unset($this->_user);
-                                redirect('index.php');
+                                if($role_user == 4) {
+                                    unset($this->_user);
+                                    redirect('page-admin.php?module=create-employee');
+                                } else {
+                                    unset($this->_user);
+                                    redirect('index.php');                                    
+                                }
+
                                 
                             } else {
                                 //Caso email já exista na plataforma, se passar banco de dados vai retornar um erro porque tem unique no campo
                                 alertMessage('Email já foi cadastrado!');
-                                unset($this->_user);
-                                redirect('register.php');
+                                if($role_user == 4) {
+                                    unset($this->_user);
+                                    redirect('page-admin.php?module=create-employee');
+                                } else {
+                                    unset($this->_user);
+                                    redirect('register.php');
+                                }
                             }
         
                         } catch(PDOException $ex) {
                             //captura erro do banco
                             alertMessage('Erro ao inserir usuário');
-                            redirect('register.php');
+                            if($role_user == 4) {
+                                unset($this->_user);
+                                redirect('page-admin.php?module=create-employee');
+                            } else {
+                                unset($this->_user);
+                                redirect('register.php');
+                            }
                         }
         
                     } else {
                         //usuário ou senha inválidos no registro para a plataforma
                         alertMessage('Usuário e/ou senha inválidos');
-                        redirect('register.php');
+                        if($role_user == 4) {
+                            unset($this->_user);
+                            redirect('page-admin.php?module=create-employee');
+                        } else {
+                            unset($this->_user);
+                            redirect('register.php');
+                        }
                     }
                 }
 
 
                 public function UpdateUser($id) {
-                    echo $id;
                     if(md5($_POST['oldPassword'])==$_SESSION['password'] && md5($_POST['newPassword'])==md5($_POST['confirmPassword'])) {
                         if(strlen($_POST['name'])>=3 && strlen($_POST['password'])>=4) {
                             $this->_user -> setUsername($_POST['name']);
@@ -163,7 +185,7 @@
                                 <td>".$arr[$i]['tel']."</td>
                                 <td>".$role."</td>
                                 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <a href='#' role='button' class='btn btn-sm'><i class='fas fa-trash-alt'></i>&nbsp;&nbsp;Deletar</a></td>
+                                <a href='?module=list-users&id=".$arr[$i]['id']."&delete=true' role='button' class='btn btn-sm'><i class='fas fa-trash-alt'></i>&nbsp;&nbsp;Deletar</a></td>
                         </tr>";
                     }
                 }
@@ -173,7 +195,7 @@
                     for($i =0; $i<count($arr);$i++) {
 
                         if($arr[$i]['role_id'] == 2) {
-                            $role = "administrador";
+                            $role = "Administrador";
                         } else if($arr[$i]['role_id'] == 3) {
                             $role = "Cliente";
                         } else {
@@ -186,7 +208,7 @@
                                 <td>".$arr[$i]['tel']."</td>
                                 <td>".$role."</td>
                                 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <a href='#' role='button' class='btn btn-sm'><i class='fas fa-trash-alt'></i>&nbsp;&nbsp;Deletar</a></td>
+                                <a href='?module=list-users&id=".$arr[$i]['id']."&delete=true' role='button' class='btn btn-sm'><i class='fas fa-trash-alt'></i>&nbsp;&nbsp;Deletar</a></td>
                         </tr>";
                     }
                 }

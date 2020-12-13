@@ -1,5 +1,10 @@
 <?php
-    require_once './../gobeauty/controllers/functions/myFunctions.php';
+
+require_once './../gobeauty/controllers/user.controller.php';
+require_once './../gobeauty/controllers/functions/myFunctions.php';
+
+use app_controllers\UserController;
+
     if(!isset($_SESSION))
         session_start();
     //if(!isset($_SESSION['id'])){
@@ -7,6 +12,7 @@
      //   header("Location:./../gobeauty/index.php");
     //}
     $_SESSION['username'] = 'Lucas';
+    $controller = new UserController();
 ?>
 
 <!DOCTYPE html>
@@ -39,8 +45,14 @@
         <li class="nav-item">
             <a class="nav-link" href="?module=create-employee">Criar Funcionário</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="?module=create-service">Criar Serviço</a>
+        <li class="nav-item dropdown" id="service">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Serviços
+            </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="?module=create-service">Criar serviço</a>
+                    <a class="dropdown-item" href="?module=list-services">Listar serviços </a>
+                </div>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="?module=list-users">Listar Usuários</a>

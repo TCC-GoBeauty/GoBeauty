@@ -1,10 +1,11 @@
 <?php
     namespace app_models;
+    require_once 'Conn.class.php';
+    use PDOException;   
+    use PDORow;
+    use app_models\Connect;
 
-use PDOException;
-use PDORow;
 
-require_once 'Conn.class.php';
 
     class User {
         private $_user;
@@ -99,21 +100,16 @@ require_once 'Conn.class.php';
 
         //função que cria um usuário dentro da plataforma
         public function createUser($name,$email,$tel,$pass,$role){
-            $this->setEmail($email);
-            $this->setUsername($name);
-            $this->setPass($pass);
-            $this->setTel($tel);
-            $this->setRole($role);
             $conn = new Connect();
             try{
                 $sql = "INSERT INTO users(email,username,tel,password,created_at,role_id) VALUES (:email,:user,:tel,:pass,:created_at,:role)";
                 $stmt = $conn->get_conn()->prepare($sql);
-                $stmt->bindValue(':email',"".$this->getEmail()."");
-                $stmt->bindValue(':user',"".$this->getUsername()."");
-                $stmt->bindValue(':tel',"".$this->getTel()."");
-                $stmt->bindValue(':pass',"".$this->getPass()."");
+                $stmt->bindValue(':email',$email);
+                $stmt->bindValue(':user',$name);
+                $stmt->bindValue(':tel',$tel);
+                $stmt->bindValue(':pass',$pass);
                 $stmt->bindValue(':created_at',"".date('Y-m-d H:m:s')."");
-                $stmt->bindValue(':role',"".$this->getRole()."");
+                $stmt->bindValue(':role',$role);
                 $stmt->execute();
             } catch (PDOException $ex) {
                 return $ex->getMessage();
@@ -157,7 +153,7 @@ require_once 'Conn.class.php';
         public function exists($email) {
             try {
                 $conn = new Connect();
-                $sql = 'SELECT * FROM users WHERE email LIKE :email';
+                $sql = "SELECT * FROM users WHERE email LIKE :email";
                 $stmt = $conn -> get_conn() -> prepare($sql);
                 $stmt -> bindValue(':email', $email);
                 $stmt -> execute();
