@@ -43,10 +43,10 @@
                                 if($_SESSION['role'] == 4){
                                     header('Location:./../gobeauty/page-employee.php');                     
                                 } else if($_SESSION['role'] == 3){
-                                    header('Location:./../gobeauty/page-user.php');     
+                                    header('Location:./../gobeauty/page-user.php?module=today-user');     
                                     //header('Location:./../gobeauty/edit-user.php');                 
                                 } else if($_SESSION['role'] == 2){
-                                    header('Location:./../gobeauty/page-admin.php'); 
+                                    header('Location:./../gobeauty/page-admin.php?module=today'); 
                                 }
                             } else {
                                 unset($this->_user);

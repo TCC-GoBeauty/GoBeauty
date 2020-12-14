@@ -102,6 +102,15 @@ class ServiceController {
             }
         }
 
+        public function listServices() {
+            $arr = $this->_service->getAllServices();
+            for($i=0;$i<count($arr);$i++) {
+                echo "<option value='".$arr[$i]['id']."'>
+                ".$arr[$i]['name']."
+                </option>";
+            }
+        }
+
         public function getServiceInfos($id) {
            return $this->_service->getServiceInfos($id);
         }

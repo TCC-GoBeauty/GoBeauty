@@ -43,7 +43,7 @@
             <a class="nav-link" href="?module=gallery">Galeria</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="?module=schedule">Agendar</a>
+            <a class="nav-link" href="?module=create-schedule">Agendar</a>
         </li>
         </ul>
         <span class="nav-item dropdown" id="user-options">
@@ -59,8 +59,9 @@
     </nav>
     <div class="container">
         <?php
+
             if(isset($_GET['module']))
-               require_once './../gobeauty/modules/'.$_GET['module'].'.php';
+                require_once './../gobeauty/modules/'.$_GET['module'].'.php';
         ?>
     </div>
     <!-- JavaScript (Opcional) -->

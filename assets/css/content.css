@@ -35,3 +35,13 @@
 .content ::-webkit-input-placeholder {
     color:white;
  }
+
+ .content #inputGroupSelect01 {
+     background-color: #8257e6;
+     color: white;
+ }
+
+ .content .container .input-group .form-control input[type='date']:disabled {
+    color: white;
+  }
+ 
