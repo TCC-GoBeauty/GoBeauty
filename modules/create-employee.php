@@ -1,3 +1,8 @@
+<?php
+    if($_SESSION['id']>2) {
+        echo 'Você não tem acesso a essa página!';
+    }
+?>
 <div class="content">
     <h1>Criar Funcionário</h1>
        

@@ -24,7 +24,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" style="color: #ff9900;">R$</span>
                     </div>
-                    <input type="text" name="price" class="form-control" aria-label="Quantia" placeholder="00">
+                    <input type="number" name="price" class="form-control" aria-label="Quantia" placeholder="00">
                     <div class="input-group-append">
                         <span class="input-group-text"  style="color: #ff9900;" >.00</span>
                     </div>

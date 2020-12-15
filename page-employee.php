@@ -11,6 +11,7 @@ use app_controllers\UserController;
         session_destroy();
         header("Location:./../gobeauty/index.php");
     }
+    $_SESSION['username'] = 'func';
     $controller = new UserController();
 ?>
 
@@ -26,7 +27,7 @@ use app_controllers\UserController;
     <link rel="stylesheet" href="./assets/css/nav-custom.css">
     <link rel="stylesheet" href="./assets/css/content.css">
     <link rel="stylesheet" href="./assets/css/profile.css">
-    <title>Admin - GoBeauty</title>
+    <title>Funcionário - GoBeauty</title>
   </head>
 
   <body>
@@ -39,22 +40,7 @@ use app_controllers\UserController;
     <div class="collapse navbar-collapse" id="textoNavbar">
         <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-            <a class="nav-link" href="?module=today">Inicio<span class="sr-only">(Página atual)</span></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="?module=create-employee">Criar Funcionário</a>
-        </li>
-        <li class="nav-item dropdown" id="service">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Serviços
-            </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="?module=create-service">Criar serviço</a>
-                    <a class="dropdown-item" href="?module=list-services">Listar serviços </a>
-                </div>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="?module=list-users">Listar Usuários</a>
+            <a class="nav-link" href="?module=today-employee">Inicio<span class="sr-only">(Página atual)</span></a>
         </li>
         </ul>
         <span class="nav-item dropdown" id="user-options">
@@ -70,8 +56,8 @@ use app_controllers\UserController;
     </nav>
     <div class="container">
         <?php
-            if(isset($_GET['module']))
-               require_once './../gobeauty/modules/'.$_GET['module'].'.php';
+            if(!isset($_GET['module']))
+               require_once './../gobeauty/modules/today-employee.php';
         ?>
     </div>
 

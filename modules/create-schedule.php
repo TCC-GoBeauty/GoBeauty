@@ -30,7 +30,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" style="color: #ff9900;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="far fa-calendar-alt"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                     </div>
-                    <input type="date" name="date" class="form-control" aria-label="date" min="<?php echo date('Y-m-d');?>" max="<?php echo date('Y-m-d',strtotime('+30 days'));?>" required>
+                    <input type="date" name="date" class="form-control" aria-label="date" min="<?php echo date('Y-m-d');?>" max="<?php echo date('Y-m-d',strtotime('+90 days'));?>" required>
                 </div>
             </div>
 
@@ -50,7 +50,7 @@
         <?php
             if(isset($_POST['submit'])){
                 $start_time = $_POST['date'].' '.$_POST['time'].':00';
-                var_dump($schedule_con->addNewSchedule($_POST['service'],$start_time,19));
+                $schedule_con->addNewSchedule($_POST['service'],$start_time,$_SESSION['id']);
                 unset($_POST['submit']);                
             }
 

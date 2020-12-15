@@ -8,8 +8,8 @@
     <table class="table table-striped">
         <thead>
             <tr>
+                <th scope="col" class="cname">Cliente</th>
                 <th scope="col" class="cname">Procedimento</th>
-                <th scope="col" class="cname">Valor a pagar</th>
                 <th scope="col" class="cname">Data</th>
                 <th scope="col" class="cname">Horário p/ finalização</th>
             </tr>
@@ -17,13 +17,7 @@
         <tbody>
 
              <?php
-                $sche_controller->listSchedule(19);
-                if(isset($_GET['delete']) && $_GET['delete']=='true') {
-                    $sche_controller->deleteSchedule($_GET['id']);
-                    unset($_GET['id']);
-                    unset($_GET['delete']);
-                    redirect('page-user.php?module=today&id=&delete=false');  
-                }
+                $sche_controller->listAllSchedulesWithoutDelete();
             ?>  
         </tbody>
     </table>

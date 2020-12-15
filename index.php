@@ -53,7 +53,7 @@
             //verifica se submit foi setado para executar ação do controller
             if(isset($_POST['submit']))
                 $controller->login();
-            unset($_POST['submit']); 
+                unset($_POST['submit']); 
         ?>
     </div>
 </body>

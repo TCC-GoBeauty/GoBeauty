@@ -2,11 +2,10 @@
     require_once './../gobeauty/controllers/functions/myFunctions.php';
     if(!isset($_SESSION))
         session_start();
-    //if(!isset($_SESSION['id'])){
-     //   session_destroy();
-     //   header("Location:./../gobeauty/index.php");
-    //}
-    $_SESSION['username'] = 'Lucas';
+    if(!isset($_SESSION['id'])){
+        session_destroy();
+        header("Location:./../gobeauty/index.php");
+    }
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +27,6 @@
   </head>
 
   <body>
-
     <nav class="navbar navbar-expand-lg">
     <a class="navbar-brand" href="#"><img src="./assets/img/logo.svg" alt="Logo GoBeauty" width="50%" height="50%"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#textoNavbar" aria-controls="textoNavbar" aria-expanded="false" aria-label="Alterna navegação">
@@ -51,7 +49,7 @@
             <?php salute(); echo $_SESSION['username'];?>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="?module=edit-account&u=<?php echo 19?>">Editar minha conta</a>
+                <a class="dropdown-item" href="?module=edit-account&u=<?php echo $_SESSION['id']?>">Editar minha conta</a>
                 <a class="dropdown-item" href="./../gobeauty/controllers/functions/logout.php">Logout do sistema</a>
             </div>
         </span>

@@ -87,7 +87,7 @@
         public function listSchedule($user_id) {
             $conn = new Connect();
             try {
-                $sql = "SELECT sc.id as id,sc.start_time,sc.finish_time,service.name as service, service.price as price FROM schedule_add AS sc LEFT JOIN service ON service.id = sc.service_id WHERE user_id = :id";
+                $sql = "SELECT sc.id as id,DATE_FORMAT(sc.start_time,'%d/%m/%Y - %H:%i:%s') as start_time,DATE_FORMAT(sc.finish_time,'%d/%m/%Y - %H:%i:%s') as finish_time,service.name as service, service.price as price FROM schedule_add AS sc LEFT JOIN service ON service.id = sc.service_id WHERE user_id = :id";
                 $stmt = $conn->get_conn()->prepare($sql);
                 $stmt-> bindValue(':id',$user_id);
                 $stmt-> execute();
@@ -101,7 +101,7 @@
         public function listAllSchedules() {
             $conn = new Connect();
             try {
-                $sql = "SELECT sc.id as id,sc.start_time,sc.finish_time,users.username,service.name as service FROM schedule_add AS sc LEFT JOIN users ON users.id = sc.user_id LEFT JOIN service ON service.id = sc.service_id";
+                $sql = "SELECT sc.id as id,DATE_FORMAT(sc.start_time,'%d/%m/%Y - %H:%i:%s') as start_time,DATE_FORMAT(sc.finish_time,'%d/%m/%Y - %H:%i:%s') as finish_time,users.username,service.name as service FROM schedule_add AS sc LEFT JOIN users ON users.id = sc.user_id LEFT JOIN service ON service.id = sc.service_id";
                 $stmt = $conn->get_conn()->prepare($sql);
                 $stmt-> execute();
                 $result = $stmt->fetchAll();

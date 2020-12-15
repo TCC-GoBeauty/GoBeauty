@@ -41,7 +41,7 @@
                                 
                                 //verifica role do usuário e redireciona para a página home do mesmo
                                 if($_SESSION['role'] == 4){
-                                    header('Location:./../gobeauty/page-employee.php');                     
+                                    header('Location:./../gobeauty/page-employee.php?module=today-employee');                     
                                 } else if($_SESSION['role'] == 3){
                                     header('Location:./../gobeauty/page-user.php?module=today-user');     
                                     //header('Location:./../gobeauty/edit-user.php');                 

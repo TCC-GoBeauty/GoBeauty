@@ -105,6 +105,23 @@
             }
        }
 
+       public function serviceExists($id) {
+            $conn = new Connect();
+            try{
+                $sql = "SELECT * FROM service WHERE id = :id";
+                $stmt = $conn->get_conn()->prepare($sql);
+                $stmt->bindValue(':id',$id);
+                $stmt->execute();
+                if($stmt->rowCount()>=1) {
+                    return true;
+                }
+                return false;
+                
+            } catch (PDOException $ex) {
+                return $ex->getMessage();
+            }
+       }
+
        public function deleteService($id) {
            $conn = new Connect();
            try{
@@ -112,6 +129,10 @@
                $stmt = $conn->get_conn()->prepare($sql);
                $stmt->bindValue(':id',$id);
                $stmt->execute();
+               if(!$this->serviceExists($id)) {
+                   return true;
+               } 
+               return false;
             } catch (PDOException $ex) {
                 return $ex->getMessage();
             }

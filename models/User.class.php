@@ -18,7 +18,7 @@
 
         //Construtor que inicializa alguns valores(Será utilizado nas classes que herdam desta)
         public function __construct() {
-
+            $this->_statusLogin = false;
         }
 
         //conjunto de funções que setam e retornam atributos da classe
@@ -174,7 +174,7 @@
                     $sql = 'SELECT * FROM users WHERE email LIKE :email and password LIKE :pass';
                     $stmt = $conn->get_conn()->prepare($sql);
                     $stmt->bindValue(':email',$email);
-                    $stmt->bindValue(':pass',md5($pass));
+                    $stmt->bindValue(':pass',$pass);
                     $stmt->execute();
                     $result = $stmt->fetchAll();
                     if($stmt->rowCount() == 1) {
@@ -198,9 +198,8 @@
                     } else {
                         $this->_statusLogin=false;
                     }
-
-                    return $this->_statusLogin;
                 }
+                return $this->_statusLogin;
             } catch (PDOException $ex) {
                 return $ex -> getMessage();
             }

@@ -40,11 +40,23 @@ class ScheduleController{
                 echo "<tr>
                     <td>".$arr[$i]['username']."</td>
                     <td>".$arr[$i]['service']."</td>
-                    <td>".date('d/m/Y - H:m:s',strtotime($arr[$i]['start_time']))."</td>
-                    <td>".date('d/m/Y - H:m:s',strtotime($arr[$i]['finish_time']))."</td>
+                    <td>".$arr[$i]['start_time']."</td>
+                    <td>".$arr[$i]['finish_time']."</td>
                     <td>
                     <a href='?module=today&id=".$arr[$i]['id']."&delete=true' role='button' class='btn btn-sm'><i class='fas fa-trash-alt'></i>&nbsp;&nbsp;Deletar</a>
                     </td>
+                </tr>";
+            }
+        }
+
+        public function listAllSchedulesWithoutDelete() {
+            $arr = $this->_schedule->listAllSchedules();
+            for($i = 0;$i<count($arr);$i++) {
+                echo "<tr>
+                    <td>".$arr[$i]['username']."</td>
+                    <td>".$arr[$i]['service']."</td>
+                    <td>".$arr[$i]['start_time']."</td>
+                    <td>".$arr[$i]['finish_time']."</td>
                 </tr>";
             }
         }
@@ -55,8 +67,8 @@ class ScheduleController{
                 echo "<tr>
                     <td>".$arr[$i]['service']."</td>
                     <td>".$arr[$i]['price']." R$</td>
-                    <td>".date('d/m/Y - H:m:s',strtotime($arr[$i]['start_time']))."</td>
-                    <td>".date('d/m/Y - H:m:s',strtotime($arr[$i]['finish_time']))."</td>
+                    <td>".$arr[$i]['start_time']."</td>
+                    <td>".$arr[$i]['finish_time']."</td>
                     <td>
                     <a href=?module=today-user&id=".$arr[$i]['id']."&delete=true' role='button' class='btn btn-sm' disabled><i class='fas fa-trash-alt'></i>&nbsp;&nbsp;Deletar</a>
                     </td>
@@ -66,7 +78,7 @@ class ScheduleController{
 
         public function deleteSchedule($id) {
             $this->_schedule->deleteSchedule($id);
-            alertMessage('Usuário deletado com sucesso!');
+            alertMessage('Horário deletado com sucesso!');
         }
     }
 ?>

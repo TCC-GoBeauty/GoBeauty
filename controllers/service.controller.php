@@ -74,17 +74,17 @@ class ServiceController {
         }
         
         public function deleteService($id) {
-            try {
-                $this->_service->deleteService($id);
-                alertMessage('Serviço deletado com sucesso');
+            if (!$this->_service->deleteService($id)) {
+                alertMessage('Erro ao deletar serviço,\n verifique se existe algum horário agendado com este serviço!');
                 unset($this->_service);
-                redirect('page-admin.php?module=list-services');       
-            } catch (PDOException $ex) {
-                //captura erro do banco
-                alertMessage('Erro ao deletar serviço');
+                redirect('page-admin.php?module=list-services');
+            } else {
+                alertMessage('Serviço deletado com sucesso');
                 unset($this->_service);
                 redirect('page-admin.php?module=list-services');
             }
+            
+    
         }
 
         public function listAllServices() {
@@ -95,7 +95,7 @@ class ServiceController {
                 <td>".$arr[$i]['price']."</td>
                 <td>".$arr[$i]['max_time']."</td>
                 <td>
-                <a href='?module=list-services&id=".$arr[$i]['id']."&delete=true' role='button' class='btn btn-sm'><i class='fas fa-trash-alt'></i>&nbsp;&nbsp;Deletar</a>
+                <a href='?module=list-services&Deleteid=".$arr[$i]['id']."' role='button' class='btn btn-sm'><i class='fas fa-trash-alt'></i>&nbsp;&nbsp;Deletar</a>
                 <a href='?module=update-service&id=".$arr[$i]['id']."' role='button' class='btn btn-sm'><i class='far fa-edit'></i>&nbsp;&nbsp;Editar</a>
                 </td>
         </tr>";
