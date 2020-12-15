@@ -11,7 +11,6 @@ use app_controllers\UserController;
         session_destroy();
         header("Location:./../gobeauty/index.php");
     }
-    $_SESSION['username'] = 'func';
     $controller = new UserController();
 ?>
 
@@ -48,7 +47,7 @@ use app_controllers\UserController;
             <?php salute(); echo $_SESSION['username'];?>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="?module=edit-account&u=<?php echo $_SESSION['id']?>">Editar minha conta</a>
+                <a class="dropdown-item" href="?module=edit-account&u=<?php echo $_SESSION['id'];?>">Editar minha conta</a>
                 <a class="dropdown-item" href="./../gobeauty/controllers/functions/logout.php">Logout do sistema</a>
             </div>
         </span>
@@ -56,8 +55,12 @@ use app_controllers\UserController;
     </nav>
     <div class="container">
         <?php
-            if(!isset($_GET['module']))
-               require_once './../gobeauty/modules/today-employee.php';
+            if(!isset($_GET['module'])) {
+                require_once './../gobeauty/modules/today-employee.php';
+            } else {
+                require_once './../gobeauty/modules/'.$_GET['module'].'.php';
+            }
+               
         ?>
     </div>
 
